@@ -14,7 +14,14 @@ class Game {
         this.imgLoad();
 
         this.frame = 0;// 控制管子的出现
-        this.bindEvent();// 给canvas 绑定事件
+        // this.bindEvent();// 给canvas 绑定事件
+        this.score = 0;// 分数
+
+        this.scence = 0;// 场景默认为0
+
+        if (!localStorage.getItem("FB")) {
+            localStorage.setItem("FB", "[]");
+        }
     };
     // 清屏
     clear() {
@@ -22,30 +29,39 @@ class Game {
         this.draw.clearRect(0, 0, this.canvas.width, this.canvas.height);
     };
     // 开始
+    // start() {
+    //     this.bg = new Background();
+    //     this.land = new Land();
+    //     this.bird = new Bird();
+    //     this.pipeArr = [];// 用来存放管子，具体存放在Pipe.js中
+    //     this.timer = setInterval(() => {
+    //         this.frame++;
+    //         // 每20毫秒 就执行一帧，执行前要清除以前的画面=》 更新=》渲染
+    //         this.clear();
+    //         this.bg.update();
+    //         this.bg.render();
+    //         this.land.update();
+    //         this.land.render();
+    //         if (this.frame % 150 == 0) {
+    //             new Pipe();// 每次new 一个管子，就会在Pipe.js中的代码中，执行 game.pipeArr.push(this);this代表new的实例，将本实例放入管子数组
+    //         }
+    //         // 将数组中的管子渲染出来
+    //         this.pipeArr.forEach(item => {
+    //             item.update();
+    //             item.render();
+    //         });
+    //         this.bird.update();
+    //         this.bird.render();
+
+    //     }, 20);
+    // };
     start() {
-        this.bg = new Background();
-        this.land = new Land();
-        this.bird = new Bird();
-        this.pipeArr = [];// 用来存放管子，具体存放在Pipe.js中
+        this.SM = new SceneManager();
+        this.SM.enter(this.scence);
         this.timer = setInterval(() => {
             this.frame++;
-            // 每20毫秒 就执行一帧，执行前要清除以前的画面=》 更新=》渲染
             this.clear();
-            this.bg.update();
-            this.bg.render();
-            this.land.update();
-            this.land.render();
-            if (this.frame % 150 == 0) {
-                new Pipe();// 每次new 一个管子，就会在Pipe.js中的代码中，执行 game.pipeArr.push(this);this代表new的实例，将本实例放入管子数组
-            }
-            // 将数组中的管子渲染出来
-            this.pipeArr.forEach(item => {
-                item.update();
-                item.render();
-            });
-            this.bird.update();
-            this.bird.render();
-
+            this.SM.updateAndRender();
         }, 20);
     };
     // 加载图片-----将图片字符串地址都转换为new Image()实例模式
@@ -103,10 +119,10 @@ class Game {
         }
     }
     // 绑定事件：点击屏幕小鸟起飞
-    bindEvent() {
-        this.canvas.onclick = () => {
-            this.bird.fly();
-        }
-    }
+    // bindEvent() {
+    //     this.canvas.onclick = () => {
+    //         this.bird.fly();
+    //     }
+    // }
 
 }

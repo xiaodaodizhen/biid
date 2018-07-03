@@ -15,16 +15,26 @@ class Bird {
             this.rotate += 0.08;
         } else if (this.status == "up") {
             this.changeY -= 0.5;//往上飞的时候，加速度会慢慢变小
-            this.changeY <= 0 ? this.drop = "drop" : null;
+            this.changeY <= 0 ? this.status = "drop" : null;
             this.y -= this.changeY;
             this.y <= 0 ? this.y = 0 : null;
             if (game.frame % 2 == 0) {
                 this.wing >= 2 ? this.wing = 0 : this.wing++;  // 起飞的时候小鸟拍打翅膀，选择用图（其实是3张拍打翅膀的图轮换使用）
             };
         }
+
+
+        // 34* 24 小鸟去除周围的空白的实质上的宽高，this.x是小鸟的x轴的坐标，所以获取小鸟左边this.x1和右边this.x2，上面this.y1和下面this.y2，四个临界边的左边
+        this.x1 = this.x - 12;
+        this.x2 = this.x + 12;
+        this.y1 = this.y - 17;
+        this.y2 = this.y + 17;
+
+
         if (this.y >= game.canvas.height - game.allImg["land"].height) {
             this.y = game.canvas.height - game.allImg["land"].height;
-            this.status = "drop";
+            document.getElementById("die").play();
+            game.SM.enter(3);
         }
     };
     render() {
@@ -38,6 +48,7 @@ class Bird {
     };
 
     fly() {
+        document.getElementById("swooshing").play();
         this.changeY = 6;
         this.status = "up";
         this.rotate = -0.8;
