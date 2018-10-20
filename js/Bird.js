@@ -8,6 +8,7 @@ class Bird {
         this.status = "drop";// 小鸟状态，分别是 drop  up
         this.changeY = 0;//每一帧的变化量
         this.rotate = 0;// 旋转角度
+
     };
     update() {
         if (this.status == "drop") {
