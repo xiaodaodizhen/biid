@@ -1,7 +1,7 @@
 class Bird {
     constructor() {
         // 家的dd
-        this.brd = 3
+        this.brd = 32
         this.w = game.allImg["bird0_0"].width;
         this.x = (game.canvas.width - this.w) / 2;//让小鸟在x轴的中间位置
         this.y = game.canvas.height * (1 - 0.618);// 固定比例，如身高比例
