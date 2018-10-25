@@ -54,5 +54,7 @@ class Bird {
         this.changeY = 6;
         this.status = "up";
         this.rotate = -0.8;
+
+
     }
 }
