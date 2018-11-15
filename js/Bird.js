@@ -57,4 +57,5 @@ class Bird {
         this.status = "up";
         this.rotate = -0.8;
     }
+    // test 新添加
 }
