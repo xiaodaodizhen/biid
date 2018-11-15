@@ -1,7 +1,7 @@
 class Bird {
     constructor() {
         // 家的
-        this.bds=323
+        this.bds = 323
         this.w = game.allImg["bird0_0"].width;
         this.x = (game.canvas.width - this.w) / 2;//让小鸟在x轴的中间位置
         this.y = game.canvas.height * (1 - 0.618);// 固定比例，如身高比例
@@ -10,6 +10,7 @@ class Bird {
         this.changeY = 0;//每一帧的变化量
         this.rotate = 0;// 旋转角度
     };
+
     update() {
         if (this.status == "drop") {
             this.changeY += 0.5;//默认速度每次渲染都会递增
@@ -22,7 +23,8 @@ class Bird {
             this.y <= 0 ? this.y = 0 : null;
             if (game.frame % 2 == 0) {
                 this.wing >= 2 ? this.wing = 0 : this.wing++;  // 起飞的时候小鸟拍打翅膀，选择用图（其实是3张拍打翅膀的图轮换使用）
-            };
+            }
+            ;
         }
 
 
@@ -39,6 +41,7 @@ class Bird {
             game.SM.enter(3);
         }
     };
+
     render() {
 
         // 用save 和restore 方法包裹中间代码，作用是仅对包裹内容起作用，其他的不会起作用，否则会作用的是全部canvas内容
