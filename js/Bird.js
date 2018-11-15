@@ -26,6 +26,8 @@ class Bird {
         }
 
 
+
+
         // 34* 24 小鸟去除周围的空白的实质上的宽高，this.x是小鸟的x轴的坐标，所以获取小鸟左边this.x1和右边this.x2，上面this.y1和下面this.y2，四个临界边的左边
         this.x1 = this.x - 12;
         this.x2 = this.x + 12;
